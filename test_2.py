@@ -22,3 +22,4 @@ Lam.CarData()
 Bug=SuperCar(Car2,2000)
 Bug.CarData()
 Bug.price_com()
+#do some test
