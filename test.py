@@ -1,5 +1,6 @@
 import sys
 import test_1
+import numpy as np
 
 def collatz(number):
     if number%2 == 0:
@@ -10,7 +11,12 @@ def collatz(number):
         print(w)
     return w
 
-
+aa=np.array([[1,2,3],[2,3,4],[3,4,5]])
+b=aa[:,0]
+c=2*aa[:,1]
+print(type(b))
+print(b)
+print(b+c)
 while True:
     c = input()
     try:
@@ -27,3 +33,6 @@ while True:
         if b == 1:
             print("Caculation Finished")
             break
+
+
+

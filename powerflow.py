@@ -4,7 +4,6 @@ import math
 
 np.set_printoptions(suppress=True)
 
-
 #正则表达式读取节点数
 def split_busnumber(file_address):
     """
@@ -95,13 +94,11 @@ def turn_bus_matrix(result_bus_list):
         c = int(x)
         a[k][0] = c
         # 节点类型
-
         x=s[24]+s[25]
         x = x.strip()
         c = int(x)
         a[k][1] = c
         # Final voltage
-
         x=s[27]+s[28]+s[29]+s[30]+s[31]+s[32]
         x = x.strip()
         c = float(x)
@@ -201,3 +198,12 @@ def turn_branch_array(result_branch_list):
         a[k][5] = c
     node_branch_array = a
     return node_branch_array
+
+file_address = 'IEEE30BusSystemCDF.txt'
+#file_address = input("请输入文件的相对地址:\n（为了兼顾老师验收的方便性和程序的通用性，我们采用手动输入地址，本次潮流计算作业题的文件相对地址为:IEEE30BusSystemCDF.txt,麻烦老师手动输入一下）:\n")
+bus_number = split_busnumber(file_address)    #得到节点数
+bus_data = split_bus(file_address, bus_number)    #传入节点数和文件数据得到节点数据中想要的参数
+branch_number = split_branchnumber(file_address)    #得到支路数
+branch_data = split_branch(file_address, branch_number)    #传入支路数和文件数据得到支路中想要的参数
+branch_array = turn_branch_array(branch_data)      #将得到的支路参数转换成数组
+bus_array = turn_bus_matrix(bus_data)         #将得到的节点参数转换成数组
