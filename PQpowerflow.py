@@ -35,7 +35,7 @@ def YData():
     CT=Ct.toarray()
     Y=np.matmul(np.matmul(CF,np.diag(Yff)),CF.T)+np.matmul(np.matmul(CF,np.diag(Yft)),CT.T)\
       +np.matmul(np.matmul(CT,np.diag(Ytf)),CF.T)+np.matmul(np.matmul(CT,np.diag(Ytt)),CT.T)
-    print(type(CF))
-    print(CF)
+    print(type(Y))
+    print(Y)
 
 YData()
