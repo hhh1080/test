@@ -48,3 +48,5 @@ def Ward(savebus,allbus,Y,v,o):
     for i in range(0, len(throwbus)):
         IE[i] = I[throwbus[i] - 1]
     IBnew=IB-np.matmul(np.matmul(YBE,np.linalg.inv(YEE)),YEB)
+
+def Group():
