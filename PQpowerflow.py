@@ -9,8 +9,6 @@ def YData():
     branchnum,Branch=read.BranchData(busnum)
     Branch1=Branch[:,0]
     Branch2=Branch[:,1]
-    YY = np.zeros((busnum, busnum))
-    # Y = np.array(YY, dtype=complex)
     BranchR=Branch[:,2]
     BranchX=Branch[:,3]
     BranchB=Branch[:,4]
@@ -37,5 +35,33 @@ def YData():
       +np.matmul(np.matmul(CT,np.diag(Ytf)),CF.T)+np.matmul(np.matmul(CT,np.diag(Ytt)),CT.T)
     print(type(Y))
     print(Y)
+    return Y
 
-YData()
+def PQflow(Y,Bus,busnum):
+    Pgen=Bus[:,6]
+    Pload=Bus[:,4]
+    Qgen=Bus[:,7]
+    Qload=Bus[:,5]
+    Pi=Pgen-Pload
+    Qi=Qgen-Qload
+    for i in range(0,busnum):
+        if Bus[i,1] == 3:
+            Num=Bus[i,0]
+    v=np.ones((busnum,1))
+    o=np.zeros((busnum,1))
+    for i in range(0,busnum):
+        if Bus[i,1] == 2:
+            v[i,0]=Bus[i,2]
+    U=v*np.cos(o)+v*np.sin(o)*complex(0,1)
+    Si=U*np.conjugate(np.matmul(Y,U))
+    Pis=Si.real
+    Qis=Si.imag
+    deltaP=Pi-Pis
+    deltaQ=Qi-Qis
+    deltaP=np.delete(deltaP,Num-1,axis=0)
+    U=np.delete(U,Num-1,axis=0)
+
+    deltaPU=deltaP/U
+
+
+Y=YData()

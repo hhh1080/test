@@ -10,7 +10,13 @@ def collatz(number):
         w=3*number+1
         print(w)
     return w
-
+cc=np.array([[1+1j,1+2j],[2+2j,2+3j]])
+dd=cc.real
+print(dd)
+numtest=[]
+numtest.append(1)
+print(type(numtest))
+print(numtest)
 aa=np.array([[1,2,3],[2,3,4],[3,4,5]])
 b=aa[:,0]
 c=2*aa[:,1]
