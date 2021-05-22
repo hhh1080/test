@@ -1,6 +1,7 @@
 import sys
 import test_1
 import numpy as np
+import math
 
 def collatz(number):
     if number%2 == 0:
@@ -18,11 +19,15 @@ numtest.append(1)
 print(type(numtest))
 print(numtest)
 aa=np.array([[1,2,3],[2,3,4],[3,4,5]])
-b=aa[:,0]
-c=2*aa[:,1]
-print(type(b))
-print(b)
-print(b+c)
+b=[3,4]
+# c=[0,1]
+# aa=np.delete(aa,b,axis=0)
+# aa=np.delete(aa,b,axis=1)
+bb=np.array([[3.6],[2.1],[-1.4]])
+cc=np.array([[3,1,-1],[1,2,4],[-1,4,5]])
+r=np.linalg.solve(cc,bb)
+print('r=\n')
+print(r)
 while True:
     c = input()
     try:
