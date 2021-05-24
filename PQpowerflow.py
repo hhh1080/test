@@ -17,14 +17,14 @@ def YData():
         if Branchtap[i] == 0:
             Branchtap[i] = 1
     one=np.ones(branchnum)
-    # Ycom = one/(BranchR + complex(0,1)*BranchX)
-    Ycom = one / (BranchR + complex(0, 1) * BranchX) + complex(0,1)*BranchB
+    Ycom = one/(BranchR + complex(0,1)*BranchX)
+    # Ycom = one / (BranchR + complex(0, 1) * BranchX) + complex(0,1)*BranchB
     Ytt=Ycom
     Yft=-1*Ycom*Branchtap
     Ytf=-1*Ycom*Branchtap
     Yff=Ycom*Branchtap*Branchtap
-    # Ytt=Ytt+complex(0,1)*BranchB
-    # Yff=Yff+complex(0,1)*BranchB
+    Ytt=Ytt+complex(0,1)*BranchB
+    Yff=Yff+complex(0,1)*BranchB
     I=np.zeros(branchnum)
     # for i in range(0,branchnum):
     #     I[i]=i

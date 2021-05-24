@@ -2,7 +2,14 @@ import PQpowerflow as PQ
 import numpy as np
 import EQU
 
+# 形成节点导纳矩阵Y
+# Y：节点导纳矩阵 Bus:节点信息 busnum：节点数
+
 Y,Bus,busnum=PQ.YData()
+
+# 进行PQ法潮流计算
+# v：电压幅值 o：电压相角
+
 v,o=PQ.PQflow(Y,Bus,busnum)
 print(v)
 print(o)
