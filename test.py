@@ -12,25 +12,20 @@ def collatz(number):
         print(w)
     return w
 cc=np.array([[1+1j,1+2j],[2+2j,2+3j]])
-dd=cc.real
-print(dd)
-numtest=[]
-numtest.append(1)
-print(type(numtest))
-print(numtest)
-aa=np.array([[1,2,3],[2,3,4],[3,4,5]])
-b=[3,4]
+dd=np.array([[1],[2],[3]])
+ee=dd.flatten()
+print('ee')
+print(np.diag(ee))
 # c=[0,1]
 # aa=np.delete(aa,b,axis=0)
 # aa=np.delete(aa,b,axis=1)
 bb=np.array([[1],[2]])
-cc=np.array([[1,2],[3,4]])
-print(bb*cc)
-dd=np.array([[1],[2]])
-ee=np.array([[1],[1]])
-print(np.arctan(ee/dd)*180/math.pi)
-print(cc[1,1])
-print(.1)
+cc=np.array([])
+aa=[1,2,3]
+for i in range(0,3):
+    cc=np.append(cc,aa,axis=0)
+print("cc")
+print(cc)
 while True:
     c = input()
     try:
