@@ -356,20 +356,53 @@ def CSR(Y,throwbus,allbus,v,o,Bus):
     for i in range(0, len(throwbus)):
         U2 = U[int(throwbus[i] - 1)][0]
     #目前先考虑全为恒阻抗的情况，如果某节点有恒阻抗负载，相当于该节点对地导纳增加了该恒阻抗
-    P=np.zeros((len(throwbus),1))
+    # P=np.zeros((len(throwbus),1))
+    # Q = np.zeros((len(throwbus), 1))
+    # for i in range(0,len(throwbus)):
+    #     P[i][0]=Bus[int(throwbus[i]-1)][4]/100
+    #     Q[i][0]=Bus[int(throwbus[i]-1)][5]/100
+    # S=P+complex(0,1)*Q
+    # y22=np.conjugate(S/abs(U2)/abs(U2))
+    # y220=y22.flatten()
+    # Y220=np.diag(y220)
+    # Y22+=Y220
+    # Y11new=Y11-np.matmul(np.matmul(Y12,np.linalg.inv(Y22)),Y21)
+    # one=np.ones((len(throwbus)))
+    # Bus = np.delete(Bus, throwbus - one, axis=0)  # 消去原始发电机节点的信息
+    # for i in range(0,len(savebus)):
+    #     Bus[i][0]=i+1
+    #该板块下考虑50%的恒阻抗与50%的恒功率模型
+    P = np.zeros((len(throwbus), 1))
     Q = np.zeros((len(throwbus), 1))
-    for i in range(0,len(throwbus)):
-        P[i][0]=Bus[int(throwbus[i]-1)][4]/100
-        Q[i][0]=Bus[int(throwbus[i]-1)][5]/100
-    S=P+complex(0,1)*Q
-    y22=np.conjugate(S/abs(U2)/abs(U2))
-    y220=y22.flatten()
-    Y220=np.diag(y220)
-    Y22+=Y220
-    Y11new=Y11-np.matmul(np.matmul(Y12,np.linalg.inv(Y22)),Y21)
+    for i in range(0, len(throwbus)):
+        P[i][0] = Bus[int(throwbus[i] - 1)][4] / 100
+        Q[i][0] = Bus[int(throwbus[i] - 1)][5] / 100
+    #此处为恒阻抗处理部分
+    Pz=P/2
+    Qz=Q/2
+    Sz = Pz + complex(0, 1) * Qz
+    y22 = np.conjugate(Sz / abs(U2) / abs(U2))
+    y220 = y22.flatten()
+    Y220 = np.diag(y220)
+    Y22 += Y220
+    Y11new = Y11 - np.matmul(np.matmul(Y12, np.linalg.inv(Y22)), Y21)
+    #移植到保留节点上的
+    #此处为恒功率处理部分（由于是静态潮流
+    Ps = P / 2
+    Qs = Q / 2
+    Ss = Ps + complex(0, 1) * Qs
+    Is=np.conjugate(Ss/U2)
+    Isnew=-np.matmul(np.matmul(Y12,np.linalg.inv(Y22)),Is)
+    #保留节点上的功率增量
+    deltaSs=U1*np.conjugate(Isnew)
+    deltaPs=deltaSs.real
+    deltaQs=deltaSs.imag
+    for i in range(0,len(savebus)):
+        Bus[int(savebus[i] - 1)][4] += deltaPs[i][0] * 100
+        Bus[int(savebus[i] - 1)][5] += deltaQs[i][0] * 100
     one=np.ones((len(throwbus)))
     Bus = np.delete(Bus, throwbus - one, axis=0)  # 消去原始发电机节点的信息
-    for i in range(0,len(savebus)):
-        Bus[i][0]=i+1
+    for i in range(0, len(savebus)):
+        Bus[i][0] = i + 1
     return Y11new,Bus
 
