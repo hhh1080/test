@@ -32,13 +32,22 @@ one=np.ones((len(throwbus)),dtype=int)
 # vv1=throwbus-one
 # for i in range(0,len(throwbus)):
 #     vv1[i]=int(vv1[i])
+o=o*180/math.pi
 v=np.delete(v,throwbus - one,axis=0)
+o=np.delete(o,throwbus - one,axis=0)
 deltav=v-v1
-print(deltav)
-print(len(v1))
-print(len(v))
+deltao=o-o1
+# print(deltav)
 # vv1=deltav.flatten()
-print(np.min(deltav))
+print('maxdeltav')
+# print(np.min(deltav))
+print(np.max(deltav))
+print('maxdeltao')
+# print(deltao)
+# print(o1)
+# print(np.min(deltao))
+print(np.max(deltao))
+
 
 # savebus=np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,16,17,27,28])
 # o=o*math.pi/180

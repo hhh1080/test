@@ -378,8 +378,8 @@ def CSR(Y,throwbus,allbus,v,o,Bus):
         P[i][0] = Bus[int(throwbus[i] - 1)][4] / 100
         Q[i][0] = Bus[int(throwbus[i] - 1)][5] / 100
     #此处为恒阻抗处理部分
-    Pz=P/2
-    Qz=Q/2
+    Pz=P*1
+    Qz=Q*1
     Sz = Pz + complex(0, 1) * Qz
     y22 = np.conjugate(Sz / abs(U2) / abs(U2))
     y220 = y22.flatten()
@@ -388,8 +388,8 @@ def CSR(Y,throwbus,allbus,v,o,Bus):
     Y11new = Y11 - np.matmul(np.matmul(Y12, np.linalg.inv(Y22)), Y21)
     #移植到保留节点上的
     #此处为恒功率处理部分（由于是静态潮流
-    Ps = P / 2
-    Qs = Q / 2
+    Ps = P*0
+    Qs = Q*0
     Ss = Ps + complex(0, 1) * Qs
     Is=np.conjugate(Ss/U2)
     Isnew=-np.matmul(np.matmul(Y12,np.linalg.inv(Y22)),Is)

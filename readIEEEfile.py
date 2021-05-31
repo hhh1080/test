@@ -15,7 +15,7 @@ def BusData():
     pat = re.compile(keyStart + '(.*?)' + keyEnd, re.S)
     result_busnumber = pat.findall(lines[1])
     busnumber = int(result_busnumber[0].strip())
-    a = np.zeros((busnumber, 12))
+    a = np.zeros((busnumber, 13))
     for i in range(2, busnumber + 2):
         s = list(lines[i])
         # 节点号
@@ -66,6 +66,10 @@ def BusData():
         x = ''.join(s[98:106])
         c = float(x.strip())
         a[i - 2][11] = c
+        # 电压等级
+        x=''.join(s[76:83])
+        c=float(x.strip())
+        a[i - 2][12]=c
     return busnumber,a
 
 def BranchData(busnumber):

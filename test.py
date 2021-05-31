@@ -11,21 +11,17 @@ def collatz(number):
         w=3*number+1
         print(w)
     return w
-cc=np.array([[1+1j,1+2j],[2+2j,2+3j]])
-dd=np.array([[1],[2],[3]])
-ee=dd.flatten()
-print('ee')
-print(np.diag(ee))
+n=np.arange(7)
+print('n')
+print(n)
 # c=[0,1]
 # aa=np.delete(aa,b,axis=0)
 # aa=np.delete(aa,b,axis=1)
 bb=np.array([[1],[2]])
-cc=np.array([])
-aa=[1,2,3]
-for i in range(0,3):
-    cc=np.append(cc,aa,axis=0)
-print("cc")
-print(cc)
+a=np.array([1,2,2,2,3])
+print('a')
+(b,)=np.where(a == 2)
+print(b)
 while True:
     c = input()
     try:
