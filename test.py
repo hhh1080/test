@@ -17,11 +17,12 @@ print(n)
 # c=[0,1]
 # aa=np.delete(aa,b,axis=0)
 # aa=np.delete(aa,b,axis=1)
-bb=np.array([[1],[2]])
-a=np.array([1,2,2,2,3])
-print('a')
-(b,)=np.where(a == 2)
-print(b)
+a='L PUBGSHI 500.'
+a=a.encode('utf-8')
+a=a.decode('utf-8')
+if a[0:2] == 'L ':
+    print("YYY")
+else:print("NNN")
 while True:
     c = input()
     try:
