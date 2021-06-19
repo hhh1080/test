@@ -400,7 +400,7 @@ def CSR(Y,throwbus,allbus,v,o,Bus):
     for i in range(0,len(savebus)):
         Bus[int(savebus[i] - 1)][4] += deltaPs[i][0] * 100
         Bus[int(savebus[i] - 1)][5] += deltaQs[i][0] * 100
-    one=np.ones((len(throwbus)))
+    one=np.ones((len(throwbus)),dtype=int)
     Bus = np.delete(Bus, throwbus - one, axis=0)  # 消去原始发电机节点的信息
     for i in range(0, len(savebus)):
         Bus[i][0] = i + 1
